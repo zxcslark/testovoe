@@ -9,14 +9,16 @@
 <body>
     <div class = "container">
         <div class="feedback_form">
-            <form name = "feedback" method = "POST" action="scripts/send.php" onsubmit="return validate()">
-                    <input type="text" name = "name" placeholder="Введите имя">
-                    <input type="text" name = "email" placeholder="Введите адрес почты">
+            <form id = "feedback" name = "feedback" method="POST" onsubmit="">
+                    <input type="text" id = "name" name = "name" placeholder="Введите имя">
+                    <input type="text" id = "email" name = "email" placeholder="Введите адрес почты">
                     <button type="submit">Отправить</button>
             </form>
+            <div class="form_message"></div>
         </div>
     </div>
-    <script src="scripts/checkValue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src ="scripts/js/formHandler.js"></script>
 </body>
 </html>
 

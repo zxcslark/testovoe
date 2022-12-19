@@ -2,9 +2,11 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-require_once('../PHPMailer/src/PHPMailer.php');
-require_once('../PHPMailer/src/SMTP.php');
-require_once('../PHPMailer/src/Exception.php');
+$rootPath = $_SERVER['DOCUMENT_ROOT'];
+
+require_once("$rootPath/PHPMailer/src/PHPMailer.php");
+require_once("$rootPath/PHPMailer/src/SMTP.php");
+require_once("$rootPath/PHPMailer/src/Exception.php");
 
 // Получение данных из формы
 $form_email_adress = htmlspecialchars($_POST['email']);
@@ -18,7 +20,10 @@ $port = '465';
 
 // Проверка корректности адреса
 function validateMail($form_email_adress){
-    if(!filter_var($form_email_adress,FILTER_VALIDATE_EMAIL)) die('Проверьте, пожалуйста, корректность введенного адреса');
+    if(!filter_var($form_email_adress,FILTER_VALIDATE_EMAIL)){
+        echo "Проверьте корректность адреса";
+        die();
+    }
 }
 
 /**
@@ -51,9 +56,8 @@ function send($host, $hostUsername, $hostPassword, $port, $form_email_adress, $s
     if($mail->send()){
         echo 'Письмо отправлено';
     }else{
-        echo 'error';
+        echo 'Произошла ошибка';
     }
 }
-
 validateMail($form_email_adress);
 send($host, $hostUsername, $hostPassword, $port, $form_email_adress, "Тестовое задание", "Имя: $form_name");
